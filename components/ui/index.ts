@@ -2,3 +2,7 @@ export { Button } from '@/components/ui/button';
 export { Input } from '@/components/ui/input';
 export { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 export { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+export { Field, FieldDescription, FieldGroup, FieldLabel, FieldLegend, FieldSeparator, FieldSet } from '@/components/ui/field';
+export { Label } from '@/components/ui/label';
+export { Separator } from '@/components/ui/separator';
+export { ButtonGroup } from '@/components/ui/button-group';
