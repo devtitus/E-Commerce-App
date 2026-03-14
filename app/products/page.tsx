@@ -1,4 +1,4 @@
-import { SearchBar, SortSelector } from '@/components/index';
+import { SearchBar, SortSelector, CategoryFilter } from '@/components/index';
 
 const Products = () => {
   return (
@@ -8,6 +8,7 @@ const Products = () => {
           <SearchBar />
         </div>
         <div className="flex items-center gap-4">
+          <CategoryFilter />
           <SortSelector />
         </div>
       </div>
