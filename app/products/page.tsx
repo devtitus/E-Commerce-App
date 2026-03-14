@@ -3,11 +3,17 @@ import { SearchBar, SortSelector, CategoryFilter } from '@/components/index';
 const Products = () => {
   return (
     <div className='w-full h-[calc(100vh-64px)] px-15 py-8'>
-      <div className="w-full flex justify-between items-center">
-        <div className="flex-1 flex justify-center">
+      <div className="grid grid-cols-3 items-center">
+        {/* Empty left */}
+        <div></div>
+
+        {/* Center - SearchBar */}
+        <div className="flex justify-center">
           <SearchBar />
         </div>
-        <div className="flex items-center gap-4">
+
+        {/* Right - Filters */}
+        <div className="flex justify-end gap-4">
           <CategoryFilter />
           <SortSelector />
         </div>
@@ -15,6 +21,7 @@ const Products = () => {
 
       Products
     </div>
+
   )
 }
 
