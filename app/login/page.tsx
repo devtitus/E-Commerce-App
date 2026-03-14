@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from '@/components/ui/index'
 
 const Login = () => {
     return (
@@ -10,6 +11,7 @@ const Login = () => {
                         <div className='w-8 h-8 rounded bg-[#073D44]'></div>
                         <span className='text-black/90 font-semibold capitalize'>Eccomerce Site</span>
                     </div>
+                    <Button variant="outline">Button</Button>
                 </div>
                 <div className='w-[50%] h-screen py-20 px-28 text-black'>Content</div>
             </div>
