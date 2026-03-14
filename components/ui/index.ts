@@ -6,3 +6,4 @@ export { Field, FieldDescription, FieldGroup, FieldLabel, FieldLegend, FieldSepa
 export { Label } from '@/components/ui/label';
 export { Separator } from '@/components/ui/separator';
 export { ButtonGroup } from '@/components/ui/button-group';
+export { NativeSelect, NativeSelectOption } from '@/components/ui/native-select';

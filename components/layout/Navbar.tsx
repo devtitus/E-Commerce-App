@@ -1,7 +1,6 @@
 "use client";
 import AvatarDropdown from "./AvatarDropdown"
 import { usePathname } from "next/navigation";
-import { SearchBar } from '@/components/index';
 
 const Navbar = () => {
     const pathName = usePathname();
@@ -18,7 +17,6 @@ const Navbar = () => {
                         <p className='text-[#0F0F0F]/60 text-xs'>Your Partner</p>
                     </div>
                 </div>
-                <SearchBar />
                 <AvatarDropdown />
             </div>
         </div>
