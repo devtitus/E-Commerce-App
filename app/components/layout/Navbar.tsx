@@ -1,6 +1,8 @@
 "use client";
 import AvatarDropdown from "./AvatarDropdown"
 import { usePathname } from "next/navigation";
+import { ShoppingCart } from 'lucide-react';
+import { Button } from "@/components/ui/index";
 
 const Navbar = () => {
     const pathName = usePathname();
@@ -17,7 +19,12 @@ const Navbar = () => {
                         <p className='text-[#0F0F0F]/60 text-xs'>Your Partner</p>
                     </div>
                 </div>
-                <AvatarDropdown />
+                <div className="flex items-center gap-5">
+                    <Button variant="outline">
+                        <ShoppingCart />
+                    </Button>
+                    <AvatarDropdown />
+                </div>
             </div>
         </div>
     )
