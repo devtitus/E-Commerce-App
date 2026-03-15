@@ -3,14 +3,6 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList } from "@/components/ui/index";
 
-const frameworks = [
-  "Next.js",
-  "SvelteKit",
-  "Nuxt.js",
-  "Remix",
-  "Astro",
-] as const
-
 const CategoryFilter = ({ categories }: { categories: string[] }) => {
   const router = useRouter();
   const params = useSearchParams();
