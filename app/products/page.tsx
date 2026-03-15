@@ -1,12 +1,10 @@
 import { SearchBar, SortSelector, CategoryFilter, ProductCard, Pagination } from '@/app/components/index';
 
-type SearchParams = {
-  q?: string;
-  page?: string;
-}
+async function getProducts(query?: string, page: number = 1, sortBy?: string, order?: string) {
+  let url = `${process.env.NEXT_PUBLIC_APP_URL}/api/products?page=${page}`;
+  if (query) url += `&q=${query}`;
+  if (sortBy && order) url += `&sortBy=${sortBy}&order=${order}`;
 
-async function getProducts(query?: string, page: number = 1) {
-  const url = `${process.env.NEXT_PUBLIC_APP_URL}/api/products?page=${page}` + (query ? `&q=${query}` : "");
   const res = await fetch(url, { cache: 'no-store' });
 
   const data = await res.json();
@@ -27,11 +25,20 @@ async function getProducts(query?: string, page: number = 1) {
   };
 }
 
+type SearchParams = {
+  q?: string;
+  page?: string;
+  sortBy?: string;
+  order?: string;
+}
+
 const Products = async ({ searchParams }: { searchParams: Promise<SearchParams> }) => {
   const params = await searchParams;
   const query = params?.q;
+  const sortBy = params?.sortBy;
+  const order = params?.order;
   const page = Number(params?.page || 1);
-  const { products, total } = await getProducts(query, page);
+  const { products, total } = await getProducts(query, page, sortBy, order);
   const totalPages = Math.ceil(total / 10);
 
   return (

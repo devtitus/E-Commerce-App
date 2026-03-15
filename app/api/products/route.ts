@@ -7,7 +7,8 @@ export async function GET(req: Request) {
     try {
         const { searchParams } = new URL(req.url);
         const query = searchParams.get('q');
-
+        const sortBy = searchParams.get("sortBy");
+        const order = searchParams.get("order");
         const page = Number(searchParams.get('Page') || 1);
 
         const skip = (page - 1) * LIMIT;
@@ -18,6 +19,10 @@ export async function GET(req: Request) {
             url = `${BASE_URL}/search?q=${query}&limit=${LIMIT}&skip=${skip}`;
         } else {
             url = `${BASE_URL}?limit=${LIMIT}&skip=${skip}`;
+        }
+
+        if (sortBy && order) {
+            url += `&sortBy=${sortBy}&order=${order}`;
         }
 
         const res = await fetch(url);
