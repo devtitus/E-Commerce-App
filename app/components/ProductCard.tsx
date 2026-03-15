@@ -63,7 +63,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             <div className='flex flex-row items-center gap-2 mb-4'>
                 <p className='text-base font-normal'>${product.price}</p>
                 <span>-</span>
-                <p className='text-sm font-medium text-green-700'>{product.discount}%</p>
+                <p className='text-sm font-medium text-green-700'>{Math.round(product.discount)}% Off</p>
             </div>
             <div className='flex flex-row gap-2'>
                 <Link className='flex-1 cursor-pointer' href={`/products/${product.id}`}>

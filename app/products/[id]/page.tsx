@@ -115,7 +115,7 @@ const ProductById = ({ params }: { params: Promise<{ id: string }> }) => {
                                 {product.price}
                             </p>
                             <div className='text-black/40'>|</div>
-                            <p className='text-lg font-light text-green-700'>{product.discountPercentage}% Off</p>
+                            <p className='text-lg font-light text-green-700'>{Math.round(product.discountPercentage)}% Off</p>
                         </div>
                         <div className='flex flex-row items-center gap-3 mb-12'>
                             <Button variant={'outline'} className='py-2.5 h-auto px-6 cursor-pointer'>Buy Now</Button>
