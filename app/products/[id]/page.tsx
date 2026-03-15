@@ -17,7 +17,7 @@ const ProductById = async ({ params }: { params: Promise<{ id: string }> }) => {
     const product = await getProduct(id);
 
     return (
-        <div className='w-full h-[calc(100vh-64px)] flex flex-col'>
+        <div className='w-full h-[calc(100vh-64px)] flex flex-col overflow-hidden'>
             <div className='flex-shrink-0 px-15 py-8 pb-4'>
 
                 <div className='w-full mb-6'>

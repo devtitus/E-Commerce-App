@@ -20,7 +20,7 @@ const Cart = () => {
     ).toFixed(2);
 
     return (
-        <div className='w-full h-[calc(100vh-64px)] flex flex-col'>
+        <div className='w-full h-[calc(100vh-64px)] flex flex-col overflow-hidden'>
             <div className='flex-shrink-0 px-15 py-8 pb-4'>
                 <div className='flex flex-row gap-6'>
                     <div className='w-3/4 bg-[#F6F6F6] border border-black/10 shadow-sm px-8 py-6 rounded-xl'>

@@ -56,7 +56,7 @@ const Products = async ({ searchParams }: { searchParams: Promise<SearchParams> 
   const totalPages = Math.ceil(total / 10);
 
   return (
-    <div className='w-full h-[calc(100vh-64px)] flex flex-col'>
+    <div className='w-full h-[calc(100vh-64px)] flex flex-col overflow-hidden'>
       <div className='flex-shrink-0 px-15 py-8 pb-4'>
         <div className="grid grid-cols-3 items-center mb-5">
           {/* Empty left */}
