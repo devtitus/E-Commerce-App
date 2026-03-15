@@ -31,7 +31,7 @@ const CategoryFilter = ({ categories }: { categories: string[] }) => {
         <ComboboxEmpty>No items found.</ComboboxEmpty>
         <ComboboxList>
           {(item) => (
-            <ComboboxItem key={item} value={item}>
+            <ComboboxItem className={'cursor-pointer'} key={item} value={item}>
               {item}
             </ComboboxItem>
           )}

@@ -22,7 +22,7 @@ const ProductById = async ({ params }: { params: Promise<{ id: string }> }) => {
 
                 <div className='w-full mb-6'>
                     <Link href='/products'>
-                        <Button variant={'outline'} className={`flex flex-row items-center gap-2`}>
+                        <Button variant={'outline'} className={`flex flex-row items-center gap-2 cursor-pointer`}>
                             <ArrowLeft />
                             Back
                         </Button>
@@ -55,8 +55,8 @@ const ProductById = async ({ params }: { params: Promise<{ id: string }> }) => {
                             <p className='text-lg font-light text-green-700'>{product.discountPercentage}% Off</p>
                         </div>
                         <div className='flex flex-row items-center gap-3 mb-12'>
-                            <Button variant={'outline'} className='py-2.5 h-auto px-6'>Buy Now</Button>
-                            <Button variant={'default'} className='py-2.5 h-auto px-6'>Add to Cart</Button>
+                            <Button variant={'outline'} className='py-2.5 h-auto px-6 cursor-pointer'>Buy Now</Button>
+                            <Button variant={'default'} className='py-2.5 h-auto px-6 cursor-pointer'>Add to Cart</Button>
                         </div>
                         <div className='flex flex-row items-center gap-5'>
                             {/* Warranty */}

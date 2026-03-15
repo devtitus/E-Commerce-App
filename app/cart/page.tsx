@@ -25,7 +25,7 @@ const Cart = () => {
                 <div className='flex flex-row gap-6'>
                     <div className='w-3/4 bg-[#F6F6F6] border border-black/10 shadow-sm px-8 py-6 rounded-xl'>
                         <div className='flex flex-row items-center mb-4 gap-3'>
-                            <Link href='/products'>
+                            <Link href='/products' className='cursor-pointer'>
                                 <Button variant="outline">
                                     <ArrowLeft />
                                 </Button>
@@ -54,7 +54,7 @@ const Cart = () => {
                         <p className='text-lg font-light text-black/90 mb-5'>Grand Total : {" "}
                             <span className='text-black/80 font-semibold text-2xl'>${totalPrice}</span>
                         </p>
-                        <Button className='w-full h-auto py-2.5'>Proceed to Buy</Button>
+                        <Button className='w-full h-auto py-2.5 cursor-pointer'>Proceed to Buy</Button>
                     </div>
                 </div>
             </div>

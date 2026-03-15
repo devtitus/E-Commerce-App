@@ -23,7 +23,7 @@ const SearchBar = () => {
       <form onSubmit={(e) => {e.preventDefault(); handleSearch();}} className="w-full">
         <ButtonGroup className="w-full">
           <Input id="input-button-group" value={query} onChange={(e) => setQuery(e.target.value)} className='h-auto px-4 py-2.5' placeholder="Type to search..." />
-          <Button variant="outline" className='h-auto px-4 py-2.5' type="submit">Search</Button>
+          <Button variant="outline" className='h-auto px-4 py-2.5 cursor-pointer' type="submit">Search</Button>
         </ButtonGroup>
       </form>
     </Field>

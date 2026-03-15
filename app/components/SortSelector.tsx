@@ -24,7 +24,7 @@ const SortSelector = () => {
     router.push(`/products?${search.toString()}`);
   };
   return (
-    <NativeSelect className="h-auto py-2.5" defaultValue="" onChange={(e) => handleChange(e.target.value)}>
+    <NativeSelect className="h-auto py-2.5 cursor-pointer" defaultValue="" onChange={(e) => handleChange(e.target.value)}>
       <NativeSelectOption value="">Sorting</NativeSelectOption>
       <NativeSelectOption value="title-asc">Title A-Z</NativeSelectOption>
       <NativeSelectOption value="title-desc">Title Z-A</NativeSelectOption>

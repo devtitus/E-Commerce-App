@@ -52,7 +52,7 @@ const ProductCard = ({ product }: { product: Product }) => {
     }
 
     return (
-        <div className='border border-black/10 bg-white w-full p-4 rounded-2xl overflow-hidden shadow-sm'>
+        <div className='border border-black/10 bg-white w-full p-4 rounded-2xl overflow-hidden shadow-sm hover:bg-gray-200/20 cursor-pointer'>
             <Image alt={product.title} src={product.thumbnail} width={500} height={500} className="w-full bg-[#F6F6F6] border border-black/10 h-48 object-contain rounded-xl mb-3" />
             <span className='text-lg font-medium mb-3'>{displayTitle}</span>
             <div className='flex flex-row items-center gap-2 mb-1'>
@@ -66,10 +66,10 @@ const ProductCard = ({ product }: { product: Product }) => {
                 <p className='text-sm font-medium text-green-700'>{product.discount}%</p>
             </div>
             <div className='flex flex-row gap-2'>
-                <Link className='flex-1' href={`/products/${product.id}`}>
+                <Link className='flex-1 cursor-pointer' href={`/products/${product.id}`}>
                     <Button variant='outline' className='w-full h-auto py-2.5 rounded-md'>View Details</Button>
                 </Link>
-                <Button className='flex-1 h-auto py-2.5 rounded-md' onClick={handleAddToCart}>
+                <Button className='flex-1 h-auto py-2.5 rounded-md cursor-pointer' onClick={handleAddToCart}>
                     Add to Cart
                 </Button>
             </div>
