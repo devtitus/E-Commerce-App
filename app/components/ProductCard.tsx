@@ -59,7 +59,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                 <p className='text-sm font-medium capitalize text-black/60'>{product.category}</p>
                 <p className='text-sm font-medium text-black/60'>{product.rating} Star</p>
             </div>
-            <p className='text-sm font-medium text-black/80 mb-1'>{product.availability}</p>
+            <p className='text-sm font-medium text-green-700 mb-1'>{product.availability}</p>
             <div className='flex flex-row items-center gap-2 mb-4'>
                 <p className='text-base font-normal'>${product.price}</p>
                 <span>-</span>
