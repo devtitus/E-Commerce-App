@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Navbar } from '@/components/layout/index';
+import { Navbar } from '@/app/components/layout/index';
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 

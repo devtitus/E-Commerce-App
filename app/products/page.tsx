@@ -1,4 +1,4 @@
-import { SearchBar, SortSelector, CategoryFilter } from '@/components/index';
+import { SearchBar, SortSelector, CategoryFilter } from '@/app/components/index';
 
 const Products = () => {
   return (
