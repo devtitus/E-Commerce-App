@@ -20,7 +20,7 @@ const Products = () => {
       </div>
 
       Products
-      <div className='grid grid-cols-5 gap-4'>
+      <div className='grid grid-cols-5 gap-5'>
         <ProductCard />
         <ProductCard />
         <ProductCard />
