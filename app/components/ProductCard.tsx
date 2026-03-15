@@ -13,9 +13,9 @@ type Product = {
     discount: number;
 }
 
-const limitWords = (text: string, maxWords: number): string => {
-    const words = text.split(' ')
-    if (words.length <= maxWords) return text
+const limitWords = (title: string, maxWords: number): string => {
+    const words = title.split(' ')
+    if (words.length <= maxWords) return title
     return words.slice(0, maxWords).join(' ') + '...'
 }
 
