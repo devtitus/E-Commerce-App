@@ -27,15 +27,30 @@ type Product = {
 const ProductById = ({ params }: { params: Promise<{ id: string }> }) => {
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchProduct = async () => {
-            const { id } = await params;
-            const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/products/${id}`);
-            const data = await res.json();
-            setProduct(data);
-            setLoading(false);
+            try {
+                setError(null);
+                const { id } = await params;
+                const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/products/${id}`);
+                
+                if (!res.ok) {
+                    setProduct(null);
+                    setError('Product not found');
+                    setLoading(false);
+                    return;
+                }
+                
+                const data = await res.json();
+                setProduct(data);
+            } catch (err) {
+                setError('Failed to load product. Please try again.');
+            } finally {
+                setLoading(false);
+            }
         };
         fetchProduct();
     }, [params]);
@@ -67,6 +82,19 @@ const ProductById = ({ params }: { params: Promise<{ id: string }> }) => {
         return (
             <div className='w-full h-[calc(100vh-64px)] flex items-center justify-center'>
                 <Spinner className="size-8" />
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className='w-full h-[calc(100vh-64px)] flex items-center justify-center'>
+                <div className='flex flex-col items-center gap-2'>
+                    <p className='text-destructive text-lg font-medium'>{error}</p>
+                    <Link href='/products'>
+                        <Button variant='outline'>Back to Products</Button>
+                    </Link>
+                </div>
             </div>
         );
     }

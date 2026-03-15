@@ -32,6 +32,13 @@ export async function GET(req: Request) {
 
         const res = await fetch(url);
 
+        if (!res.ok) {
+            return NextResponse.json(
+                { message: 'Failed to fetch products', products: [], total: 0 },
+                { status: res.status }
+            );
+        }
+
         const data = await res.json();
 
         return NextResponse.json(data);
