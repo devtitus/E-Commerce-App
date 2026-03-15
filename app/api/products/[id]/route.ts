@@ -2,16 +2,10 @@ import { NextResponse } from "next/server";
 
 const BASE_URL='https://dummyjson.com/products'
 
-export async function GET(
-    req: Request,
-    { params }: { params: { id: string } }
-) {
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
-
-        const res = await fetch(
-            `${BASE_URL}/${params.id}`
-        );
-
+        const { id } = await params;
+        const res = await fetch(`${BASE_URL}/${id}`);
         const data = await res.json();
 
         return NextResponse.json(data);

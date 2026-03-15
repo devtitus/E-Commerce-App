@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useDispatch } from "react-redux";
 import { addToCart } from '@/store/index';
 import { toast } from 'sonner';
+import Link from 'next/link';
 
 type Product = {
     id: number;
@@ -65,7 +66,9 @@ const ProductCard = ({ product }: { product: Product }) => {
                 <p className='text-sm font-medium text-green-700'>{product.discount}%</p>
             </div>
             <div className='flex flex-row gap-2'>
-                <Button variant='outline' className='flex-1 h-auto py-2.5 rounded-md'>View Details</Button>
+                <Link className='flex-1' href={`/products/${product.id}`}>
+                    <Button variant='outline' className='w-full h-auto py-2.5 rounded-md'>View Details</Button>
+                </Link>
                 <Button className='flex-1 h-auto py-2.5 rounded-md' onClick={handleAddToCart}>
                     Add to Cart
                 </Button>
