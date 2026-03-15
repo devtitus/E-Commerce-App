@@ -9,7 +9,8 @@ export async function GET(req: Request) {
         const query = searchParams.get('q');
         const sortBy = searchParams.get("sortBy");
         const order = searchParams.get("order");
-        const page = Number(searchParams.get('Page') || 1);
+        const page = Number(searchParams.get('page') || 1);
+        const category = searchParams.get("category");
 
         const skip = (page - 1) * LIMIT;
 
@@ -17,7 +18,11 @@ export async function GET(req: Request) {
 
         if (query) {
             url = `${BASE_URL}/search?q=${query}&limit=${LIMIT}&skip=${skip}`;
-        } else {
+        }
+        else if (category) {
+            url = `${BASE_URL}/category/${category}?limit=${LIMIT}&skip=${skip}`;
+        }
+        else {
             url = `${BASE_URL}?limit=${LIMIT}&skip=${skip}`;
         }
 

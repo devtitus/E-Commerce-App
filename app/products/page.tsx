@@ -1,9 +1,10 @@
 import { SearchBar, SortSelector, CategoryFilter, ProductCard, Pagination } from '@/app/components/index';
 
-async function getProducts(query?: string, page: number = 1, sortBy?: string, order?: string) {
+async function getProducts(query?: string, page: number = 1, sortBy?: string, order?: string, category?: string) {
   let url = `${process.env.NEXT_PUBLIC_APP_URL}/api/products?page=${page}`;
   if (query) url += `&q=${query}`;
   if (sortBy && order) url += `&sortBy=${sortBy}&order=${order}`;
+  if (category) url += `&category=${category}`;
 
   const res = await fetch(url, { cache: 'no-store' });
 
@@ -25,11 +26,22 @@ async function getProducts(query?: string, page: number = 1, sortBy?: string, or
   };
 }
 
+async function getCategories() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/products/categories`,
+    { cache: "no-store" }
+  );
+
+  const data = await res.json();
+  return data.map((c: any) => c.slug);
+}
+
 type SearchParams = {
   q?: string;
   page?: string;
   sortBy?: string;
   order?: string;
+  category?: string;
 }
 
 const Products = async ({ searchParams }: { searchParams: Promise<SearchParams> }) => {
@@ -38,7 +50,9 @@ const Products = async ({ searchParams }: { searchParams: Promise<SearchParams> 
   const sortBy = params?.sortBy;
   const order = params?.order;
   const page = Number(params?.page || 1);
-  const { products, total } = await getProducts(query, page, sortBy, order);
+  const category = params?.category;
+  const { products, total } = await getProducts(query, page, sortBy, order, category);
+  const categories = await getCategories();
   const totalPages = Math.ceil(total / 10);
 
   return (
@@ -55,7 +69,7 @@ const Products = async ({ searchParams }: { searchParams: Promise<SearchParams> 
 
           {/* Right - Filters */}
           <div className="flex justify-end gap-4">
-            <CategoryFilter />
+            <CategoryFilter categories={categories} />
             <SortSelector />
           </div>
         </div>
