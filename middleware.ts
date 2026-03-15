@@ -1,17 +1,22 @@
 import { NextResponse, NextRequest } from 'next/server';
 
+const protectedRoutes = ['/products', '/cart'];
+const authRoutes = ['/login'];
+
 export function middleware(req: NextRequest) {
     const token = req.cookies.get('token');
-    console.log('Token:', token);
+    const { pathname } = req.nextUrl;
     
-    if(!token && req.nextUrl.pathname.startsWith('/products')) {
+    const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
+    const isAuthRoute = authRoutes.some(route => pathname.startsWith(route));
+    
+    if (!token && isProtectedRoute) {
         return NextResponse.redirect(new URL('/login', req.url));
     }
-    if(token && req.nextUrl.pathname.startsWith('/login')) {
+    
+    if (token && isAuthRoute) {
         return NextResponse.redirect(new URL('/products', req.url));
     }
-
-    console.log('Middleware running for:', req.nextUrl.pathname);
 
     return NextResponse.next();
 }
