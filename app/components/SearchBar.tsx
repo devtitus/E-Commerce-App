@@ -1,11 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Button, Input, Field, FieldLabel, ButtonGroup } from "@/components/ui/index";
+import { Button, Input, Field, ButtonGroup, Spinner } from "@/components/ui/index";
 
 const SearchBar = () => {
   const router = useRouter();
   const params = useSearchParams();
+  const [isPending, startTransition] = useTransition();
   const [query, setQuery] = useState(params.get('q') || '');
 
   const handleSearch = () => {
@@ -16,14 +17,18 @@ const SearchBar = () => {
       search.delete('q');
     }
 
-    router.push(`/products?${search.toString()}`);
+    startTransition(() => {
+      router.push(`/products?${search.toString()}`);
+    });
   };
   return (
     <Field className="w-full">
       <form onSubmit={(e) => {e.preventDefault(); handleSearch();}} className="w-full">
         <ButtonGroup className="w-full">
           <Input id="input-button-group" value={query} onChange={(e) => setQuery(e.target.value)} className='h-auto px-4 py-2.5' placeholder="Type to search..." />
-          <Button variant="outline" className='h-auto px-4 py-2.5 cursor-pointer' type="submit">Search</Button>
+          <Button variant="outline" className='h-auto px-4 py-2.5 cursor-pointer' type="submit" disabled={isPending}>
+            {isPending ? <Spinner className="size-4" /> : 'Search'}
+          </Button>
         </ButtonGroup>
       </form>
     </Field>

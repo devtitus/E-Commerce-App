@@ -1,4 +1,4 @@
-import { SearchBar, SortSelector, CategoryFilter, ProductCard, Pagination } from '@/app/components/index';
+import { SearchBar, SortSelector, CategoryFilter, ProductGrid, NavigationProvider } from '@/app/components/index';
 
 async function getProducts(query?: string, page: number = 1, sortBy?: string, order?: string, category?: string) {
   let url = `${process.env.NEXT_PUBLIC_APP_URL}/api/products?page=${page}`;
@@ -53,41 +53,35 @@ const Products = async ({ searchParams }: { searchParams: Promise<SearchParams> 
   const category = params?.category;
   const { products, total } = await getProducts(query, page, sortBy, order, category);
   const categories = await getCategories();
-  const totalPages = Math.ceil(total / 10);
 
   return (
-    <div className='w-full h-[calc(100vh-64px)] flex flex-col overflow-hidden'>
-      <div className='flex-shrink-0 px-15 py-8 pb-4'>
-        <div className="grid grid-cols-3 items-center mb-5">
-          {/* Empty left */}
-          <div></div>
+    <NavigationProvider>
+      <div className='w-full h-[calc(100vh-64px)] flex flex-col overflow-hidden'>
+        <div className='flex-shrink-0 px-15 py-8 pb-4'>
+          <div className="grid grid-cols-3 items-center mb-5">
+            {/* Empty left */}
+            <div></div>
 
-          {/* Center - SearchBar */}
-          <div className="flex justify-center">
-            <SearchBar />
+            {/* Center - SearchBar */}
+            <div className="flex justify-center">
+              <SearchBar />
+            </div>
+
+            {/* Right - Filters */}
+            <div className="flex justify-end gap-4">
+              <CategoryFilter categories={categories} />
+              <SortSelector />
+            </div>
           </div>
 
-          {/* Right - Filters */}
-          <div className="flex justify-end gap-4">
-            <CategoryFilter categories={categories} />
-            <SortSelector />
-          </div>
+          <span className='text-base font-semibold text-black/60'>Products</span>
         </div>
 
-        <span className='text-base font-semibold text-black/60'>Products</span>
+        <ProductGrid products={products} total={total} currentPage={page} />
       </div>
-
-      <div className='flex-1 overflow-y-auto px-15 pb-8'>
-        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
-          {products.map((product: any) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </div>
-      <Pagination totalPages={totalPages} currentPage={page} />
-    </div>
-
+    </NavigationProvider>
   )
+
 }
 
 export default Products

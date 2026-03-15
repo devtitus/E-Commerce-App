@@ -1,10 +1,12 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { NativeSelect, NativeSelectOption } from "@/components/ui/index";
+import { useNavigation } from "@/app/components/NavigationContext";
 
 const SortSelector = () => {
   const router = useRouter();
   const params = useSearchParams();
+  const { startTransition } = useNavigation();
 
   const handleChange = (value: string) => {
 
@@ -21,7 +23,9 @@ const SortSelector = () => {
 
     search.set("page", "1"); // reset pagination
 
-    router.push(`/products?${search.toString()}`);
+    startTransition(() => {
+      router.push(`/products?${search.toString()}`);
+    });
   };
   return (
     <NativeSelect className="h-auto py-2.5 cursor-pointer" defaultValue="" onChange={(e) => handleChange(e.target.value)}>
@@ -34,4 +38,4 @@ const SortSelector = () => {
   )
 }
 
-export default SortSelector
+export default SortSelector;

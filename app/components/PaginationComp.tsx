@@ -1,14 +1,20 @@
 "use client";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/index";
+import { useNavigation } from "@/app/components/NavigationContext";
 
 const PaginationComp = ({ totalPages, currentPage }: { totalPages: number, currentPage: number }) => {
   const params = useSearchParams();
+  const router = useRouter();
+  const { startTransition } = useNavigation();
 
-  const createLink = (page: number) => {
+  const handlePageChange = (page: number) => {
     const search = new URLSearchParams(params);
     search.set("page", page.toString());
-    return `/products?${search.toString()}`;
+    startTransition(() => {
+      router.push(`/products?${search.toString()}`);
+    });
   };
 
   const pages = [];
@@ -34,7 +40,7 @@ const PaginationComp = ({ totalPages, currentPage }: { totalPages: number, curre
 
         {currentPage > 1 && (
           <PaginationItem>
-            <PaginationPrevious href={createLink(currentPage - 1)} />
+            <PaginationPrevious href="#" onClick={(e) => { e.preventDefault(); handlePageChange(currentPage - 1); }} />
           </PaginationItem>
         )}
 
@@ -49,8 +55,9 @@ const PaginationComp = ({ totalPages, currentPage }: { totalPages: number, curre
 
           return (
             <PaginationItem key={`${page}-${index}`}>
-              <PaginationLink
-                href={createLink(Number(page))}
+              <PaginationLink 
+                href="#" 
+                onClick={(e) => { e.preventDefault(); handlePageChange(Number(page)); }}
                 isActive={Number(page) === currentPage}
               >
                 {page}
@@ -61,7 +68,7 @@ const PaginationComp = ({ totalPages, currentPage }: { totalPages: number, curre
 
         {currentPage < totalPages && (
           <PaginationItem>
-            <PaginationNext href={createLink(currentPage + 1)} />
+            <PaginationNext href="#" onClick={(e) => { e.preventDefault(); handlePageChange(currentPage + 1); }} />
           </PaginationItem>
         )}
 
@@ -70,4 +77,4 @@ const PaginationComp = ({ totalPages, currentPage }: { totalPages: number, curre
   )
 }
 
-export default PaginationComp
+export default PaginationComp;

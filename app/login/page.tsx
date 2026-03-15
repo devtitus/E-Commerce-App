@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button, Input } from '@/components/ui/index';
+import { Button, Input, Spinner } from '@/components/ui/index';
 
 const Login = () => {
     const router = useRouter();
@@ -96,7 +96,10 @@ const Login = () => {
                                 <p className="text-destructive text-sm">{errors.password}</p>
                             )}
                         </div>
-                        <Button variant="outline" type='submit' className='mt-4 h-auto py-3 text-base font-medium bg-[#0F0F0F] text-white hover:bg-[#0F0F0F]/10'>Login</Button>
+                        <Button variant="outline" type='submit' className='mt-4 h-auto py-3 text-base font-medium bg-[#0F0F0F] text-white hover:bg-[#0F0F0F]/10' disabled={isLoading}>
+                            {isLoading ? <Spinner className="size-5 mr-2" /> : null}
+                            {isLoading ? 'Logging in...' : 'Login'}
+                        </Button>
                     </form>
                 </div>
             </div>

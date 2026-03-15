@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui'
+import { Button, Spinner } from '@/components/ui'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -66,7 +66,7 @@ const ProductById = ({ params }: { params: Promise<{ id: string }> }) => {
     if (loading) {
         return (
             <div className='w-full h-[calc(100vh-64px)] flex items-center justify-center'>
-                <p>Loading...</p>
+                <Spinner className="size-8" />
             </div>
         );
     }
