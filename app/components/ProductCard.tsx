@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/index'
 import Image from 'next/image';
 import { useDispatch } from "react-redux";
 import { addToCart } from '@/store/index';
+import { toast } from 'sonner';
 
 type Product = {
     id: number;
@@ -27,6 +28,28 @@ const ProductCard = ({ product }: { product: Product }) => {
     const displayTitle = limitWords(product.title, maxTitleWords);
     const dispatch = useDispatch();
 
+    const handleAddToCart = () => {
+        dispatch(
+            addToCart({
+                id: product.id,
+                title: product.title,
+                price: product.price,
+                thumbnail: product.thumbnail,
+                availability: product.availability,
+            })
+        );
+        toast.success(
+            `${product.title} added to cart!`,
+            {
+                style: {
+                    background: '#F0FFF5',
+                    color: 'oklch(52.7% 0.154 150.069)',
+                    border: '0.3px solid #5ECC7E',
+                },
+            }
+        );
+    }
+
     return (
         <div className='border border-black/10 bg-white w-full p-4 rounded-2xl overflow-hidden shadow-sm'>
             <Image alt={product.title} src={product.thumbnail} width={500} height={500} className="w-full bg-[#F6F6F6] border border-black/10 h-48 object-contain rounded-xl mb-3" />
@@ -43,18 +66,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             </div>
             <div className='flex flex-row gap-2'>
                 <Button variant='outline' className='flex-1 h-auto py-2.5 rounded-md'>View Details</Button>
-                <Button className='flex-1 h-auto py-2.5 rounded-md'
-                    onClick={() =>
-                        dispatch(
-                            addToCart({
-                                id: product.id,
-                                title: product.title,
-                                price: product.price,
-                                thumbnail: product.thumbnail,
-                                availability: product.availability,
-                            })
-                        )
-                    }>
+                <Button className='flex-1 h-auto py-2.5 rounded-md' onClick={handleAddToCart}>
                     Add to Cart
                 </Button>
             </div>

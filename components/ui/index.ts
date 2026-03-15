@@ -9,3 +9,4 @@ export { ButtonGroup } from '@/components/ui/button-group';
 export { NativeSelect, NativeSelectOption } from '@/components/ui/native-select';
 export { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList } from "@/components/ui/combobox";
 export { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+export { Toaster } from '@/components/ui/sonner';

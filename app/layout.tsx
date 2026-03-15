@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from '@/app/components/layout/index';
 import StoreProvider from '@/app/provider/StoreProvider';
+import { Toaster } from "@/components/ui/index";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -36,6 +37,7 @@ export default function RootLayout({
         <StoreProvider>
           {children}
         </StoreProvider>
+        <Toaster position="top-right" offset="80px" theme="light" />
       </body>
     </html>
   );
