@@ -1,20 +1,83 @@
+'use client';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useDispatch } from 'react-redux';
+import { addToCart } from '@/store/index';
+import { toast } from 'sonner';
 
-async function getProduct(id: string) {
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_APP_URL}/api/products/${id}`,
-        { cache: "no-store" }
-    );
+type Product = {
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    thumbnail: string;
+    category: string;
+    rating: number;
+    availabilityStatus: string;
+    discountPercentage: number;
+    stock: number;
+    warrantyInformation: string;
+    shippingInformation: string;
+    returnPolicy: string;
+};
 
-    return res.json();
-}
+const ProductById = ({ params }: { params: Promise<{ id: string }> }) => {
+    const [product, setProduct] = useState<Product | null>(null);
+    const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
 
-const ProductById = async ({ params }: { params: Promise<{ id: string }> }) => {
-    const { id } = await params;
-    const product = await getProduct(id);
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const { id } = await params;
+            const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/products/${id}`);
+            const data = await res.json();
+            setProduct(data);
+            setLoading(false);
+        };
+        fetchProduct();
+    }, [params]);
+
+    const handleAddToCart = () => {
+        if (!product) return;
+        dispatch(
+            addToCart({
+                id: product.id,
+                title: product.title,
+                price: product.price,
+                thumbnail: product.thumbnail,
+                availability: product.availabilityStatus,
+            })
+        );
+        toast.success(
+            `${product.title} added to cart!`,
+            {
+                style: {
+                    background: '#F0FFF5',
+                    color: 'oklch(52.7% 0.154 150.069)',
+                    border: '0.3px solid #5ECC7E',
+                },
+            }
+        );
+    };
+
+    if (loading) {
+        return (
+            <div className='w-full h-[calc(100vh-64px)] flex items-center justify-center'>
+                <p>Loading...</p>
+            </div>
+        );
+    }
+
+    if (!product) {
+        return (
+            <div className='w-full h-[calc(100vh-64px)] flex items-center justify-center'>
+                <p>Product not found</p>
+            </div>
+        );
+    }
 
     return (
         <div className='w-full h-[calc(100vh-64px)] flex flex-col overflow-hidden'>
@@ -56,7 +119,7 @@ const ProductById = async ({ params }: { params: Promise<{ id: string }> }) => {
                         </div>
                         <div className='flex flex-row items-center gap-3 mb-12'>
                             <Button variant={'outline'} className='py-2.5 h-auto px-6 cursor-pointer'>Buy Now</Button>
-                            <Button variant={'default'} className='py-2.5 h-auto px-6 cursor-pointer'>Add to Cart</Button>
+                            <Button variant={'default'} className='py-2.5 h-auto px-6 cursor-pointer' onClick={handleAddToCart}>Add to Cart</Button>
                         </div>
                         <div className='flex flex-row items-center gap-5'>
                             {/* Warranty */}
