@@ -4,7 +4,7 @@ async function getProducts() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/products`, {
     cache: 'no-store'
   });
-  
+
   const data = await res.json();
 
   return data.products.map((product: any) => ({
@@ -15,35 +15,41 @@ async function getProducts() {
     thumbnail: product.thumbnail,
     category: product.category,
     rating: product.rating,
-    availability: product.availabilityStatus
+    availability: product.availabilityStatus,
+    discount: product.discountPercentage
   }));
 }
 
 const Products = async () => {
   const products = await getProducts();
   return (
-    <div className='w-full h-[calc(100vh-64px)] px-15 py-8'>
-      <div className="grid grid-cols-3 items-center">
-        {/* Empty left */}
-        <div></div>
+    <div className='w-full h-[calc(100vh-64px)] flex flex-col'>
+      <div className='flex-shrink-0 px-15 py-8 pb-4'>
+        <div className="grid grid-cols-3 items-center mb-5">
+          {/* Empty left */}
+          <div></div>
 
-        {/* Center - SearchBar */}
-        <div className="flex justify-center">
-          <SearchBar />
+          {/* Center - SearchBar */}
+          <div className="flex justify-center">
+            <SearchBar />
+          </div>
+
+          {/* Right - Filters */}
+          <div className="flex justify-end gap-4">
+            <CategoryFilter />
+            <SortSelector />
+          </div>
         </div>
 
-        {/* Right - Filters */}
-        <div className="flex justify-end gap-4">
-          <CategoryFilter />
-          <SortSelector />
-        </div>
+        <span className='text-base font-semibold text-black/60'>Products</span>
       </div>
 
-      Products
-      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
-        {products.map((product: any) => (
-          <ProductCard key={product.id} product={product}/>
-        ))}
+      <div className='flex-1 overflow-y-auto px-15 pb-8'>
+        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
+          {products.map((product: any) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
       </div>
     </div>
 
