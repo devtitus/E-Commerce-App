@@ -1,13 +1,24 @@
 import { NextResponse } from 'next/server';
 
 const BASE_URL = "https://dummyjson.com/products";
+const LIMIT = 10;
 
 export async function GET(req: Request) {
     try {
         const { searchParams } = new URL(req.url);
         const query = searchParams.get('q');
 
-        const url = query ? `${BASE_URL}/search?q=${query}` : `${BASE_URL}`;
+        const page = Number(searchParams.get('Page') || 1);
+
+        const skip = (page - 1) * LIMIT;
+
+        let url;
+
+        if (query) {
+            url = `${BASE_URL}/search?q=${query}&limit=${LIMIT}&skip=${skip}`;
+        } else {
+            url = `${BASE_URL}?limit=${LIMIT}&skip=${skip}`;
+        }
 
         const res = await fetch(url);
 

@@ -1,33 +1,39 @@
-import { SearchBar, SortSelector, CategoryFilter, ProductCard } from '@/app/components/index';
+import { SearchBar, SortSelector, CategoryFilter, ProductCard, Pagination } from '@/app/components/index';
 
 type SearchParams = {
   q?: string;
+  page?: string;
 }
 
-async function getProducts(query?: string) {
-  const url = query ? `${process.env.NEXT_PUBLIC_APP_URL}/api/products?q=${query}` : `${process.env.NEXT_PUBLIC_APP_URL}/api/products`;
-  const res = await fetch(url, {
-    cache: 'no-store'
-  });
+async function getProducts(query?: string, page: number = 1) {
+  const url = `${process.env.NEXT_PUBLIC_APP_URL}/api/products?page=${page}` + (query ? `&q=${query}` : "");
+  const res = await fetch(url, { cache: 'no-store' });
 
   const data = await res.json();
 
-  return data.products.map((product: any) => ({
-    id: product.id,
-    title: product.title,
-    description: product.description,
-    price: product.price,
-    thumbnail: product.thumbnail,
-    category: product.category,
-    rating: product.rating,
-    availability: product.availabilityStatus,
-    discount: product.discountPercentage
-  }));
+  return {
+    products: data.products.map((product: any) => ({
+      id: product.id,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      thumbnail: product.thumbnail,
+      category: product.category,
+      rating: product.rating,
+      availability: product.availabilityStatus,
+      discount: product.discountPercentage
+    })),
+    total: data.total
+  };
 }
 
 const Products = async ({ searchParams }: { searchParams: Promise<SearchParams> }) => {
   const params = await searchParams;
-  const products = await getProducts(params?.q);
+  const query = params?.q;
+  const page = Number(params?.page || 1);
+  const { products, total } = await getProducts(query, page);
+  const totalPages = Math.ceil(total / 10);
+
   return (
     <div className='w-full h-[calc(100vh-64px)] flex flex-col'>
       <div className='flex-shrink-0 px-15 py-8 pb-4'>
@@ -57,6 +63,7 @@ const Products = async ({ searchParams }: { searchParams: Promise<SearchParams> 
           ))}
         </div>
       </div>
+      <Pagination totalPages={totalPages} currentPage={page} />
     </div>
 
   )
