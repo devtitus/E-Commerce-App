@@ -1,5 +1,8 @@
+"use client";
 import { Button } from '@/components/ui/index'
 import Image from 'next/image';
+import { useDispatch } from "react-redux";
+import { addToCart } from '@/store/index';
 
 type Product = {
     id: number;
@@ -22,9 +25,10 @@ const limitWords = (title: string, maxWords: number): string => {
 const ProductCard = ({ product }: { product: Product }) => {
     const maxTitleWords = 3;
     const displayTitle = limitWords(product.title, maxTitleWords);
+    const dispatch = useDispatch();
 
     return (
-        <div className='border border-black/10 bg-white w-full p-4 rounded-2xl overflow-hidden shadow-md'>
+        <div className='border border-black/10 bg-white w-full p-4 rounded-2xl overflow-hidden shadow-sm'>
             <Image alt={product.title} src={product.thumbnail} width={500} height={500} className="w-full bg-[#F6F6F6] border border-black/10 h-48 object-contain rounded-xl mb-3" />
             <span className='text-lg font-medium mb-3'>{displayTitle}</span>
             <div className='flex flex-row items-center gap-2 mb-1'>
@@ -39,7 +43,20 @@ const ProductCard = ({ product }: { product: Product }) => {
             </div>
             <div className='flex flex-row gap-2'>
                 <Button variant='outline' className='flex-1 h-auto py-2.5 rounded-md'>View Details</Button>
-                <Button className='flex-1 h-auto py-2.5 rounded-md'>Add to Cart</Button>
+                <Button className='flex-1 h-auto py-2.5 rounded-md'
+                    onClick={() =>
+                        dispatch(
+                            addToCart({
+                                id: product.id,
+                                title: product.title,
+                                price: product.price,
+                                thumbnail: product.thumbnail,
+                                availability: product.availability,
+                            })
+                        )
+                    }>
+                    Add to Cart
+                </Button>
             </div>
         </div>
     )

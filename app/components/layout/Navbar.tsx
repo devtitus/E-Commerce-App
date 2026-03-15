@@ -3,6 +3,7 @@ import AvatarDropdown from "./AvatarDropdown"
 import { usePathname } from "next/navigation";
 import { ShoppingCart } from 'lucide-react';
 import { Button } from "@/components/ui/index";
+import Link from "next/link";
 
 const Navbar = () => {
     const pathName = usePathname();
@@ -20,9 +21,11 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="flex items-center gap-5">
-                    <Button variant="outline">
-                        <ShoppingCart />
-                    </Button>
+                    <Link href="/cart">
+                        <Button variant="outline">
+                            <ShoppingCart />
+                        </Button>
+                    </Link>
                     <AvatarDropdown />
                 </div>
             </div>
