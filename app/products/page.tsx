@@ -1,4 +1,4 @@
-import { SearchBar, SortSelector, CategoryFilter } from '@/app/components/index';
+import { SearchBar, SortSelector, CategoryFilter, ProductCard } from '@/app/components/index';
 
 const Products = () => {
   return (
@@ -20,6 +20,12 @@ const Products = () => {
       </div>
 
       Products
+      <div className='grid grid-cols-5 gap-4'>
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+      </div>
     </div>
 
   )
