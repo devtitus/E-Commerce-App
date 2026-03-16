@@ -33,7 +33,7 @@ const Cart = () => {
                             <h3 className='text-lg md:text-xl font-semibold text-black/80'>Shopping Cart</h3>
                         </div>
                         <hr className='border border-black/10 mb-4' />
-                        <div className="flex flex-col gap-4 h-[calc(90vh-220px)] overflow-y-auto">
+                        <div className="flex flex-col gap-4 h-[calc(90vh-220px)] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 pr-2">
                             {items.length === 0 ? (
                                 <div className='flex flex-col items-center justify-center gap-1 h-full'>
                                     <p className='text-black/90 text-lg font-medium'>Your cart is empty</p>
@@ -52,7 +52,7 @@ const Cart = () => {
                             <span className='bg-white text-black/80 py-1.5 px-3 rounded-sm border border-black/20 leading-normal'>{totalItems}</span>
                         </p>
                         <p className='text-md md:text-lg font-light text-black/90 mb-4 md:mb-5'>Grand Total : {" "}
-                            <span className='text-black/80 font-semibold text-lg md:text-2xl'>${totalPrice}</span>
+                            <span className='text-black/80 font-semibold text-lg md:text-2xl'>${Math.round(totalPrice).toLocaleString()}</span>
                         </p>
                         <Button className='w-full h-auto py-2.5 cursor-pointer'>Proceed to Buy</Button>
                     </div>

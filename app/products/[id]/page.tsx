@@ -140,7 +140,7 @@ const ProductById = ({ params }: { params: Promise<{ id: string }> }) => {
                         <div className='flex flex-row items-center gap-2 mb-4 md:mb-5'>
                             <p className='text-xl md:text-2xl font-medium flex flex-row items-start text-black gap-1'>
                                 <span className='text-base font-normal text-black/80'>$</span>
-                                {product.price}
+                                {Math.round(product.price).toLocaleString()}
                             </p>
                             <div className='text-black/40'>|</div>
                             <p className='text-lg font-light text-green-700'>{Math.round(product.discountPercentage)}% Off</p>

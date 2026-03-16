@@ -53,7 +53,7 @@ const ProductCard = ({ product }: { product: Product }) => {
 
     return (
         <div className='border border-black/10 bg-white w-full p-4 rounded-2xl overflow-hidden shadow-sm hover:bg-gray-200/20 hover:border-black/20'>
-            <Image alt={product.title} src={product.thumbnail} width={500} height={500} className="w-full bg-[#F6F6F6] border border-black/10 h-58 md:h-52 object-contain rounded-xl mb-3" />
+            <Image alt={product.title} src={product.thumbnail} width={500} height={500} className="w-full bg-[#F6F6F6] border border-black/10 h-48 md:h-52 object-contain rounded-xl mb-3" />
             <span className='text-lg font-medium mb-3'>{displayTitle}</span>
             <div className='flex flex-row items-center gap-2 mb-1'>
                 <p className='text-sm font-medium capitalize text-black/60'>{product.category}</p>
@@ -62,7 +62,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             </div>
             <p className='text-sm font-medium text-green-700 mb-1'>{product.availability}</p>
             <div className='flex flex-row items-center gap-2 mb-4'>
-                <p className='text-base font-normal'>${product.price}</p>
+                <p className='text-base font-normal'>${Math.round(product.price).toLocaleString()}</p>
                 <span>-</span>
                 <p className='text-sm font-medium text-green-700'>{Math.round(product.discount)}% Off</p>
             </div>

@@ -26,7 +26,7 @@ const CartItemCard = ({ item }: { item: CartItem }) => {
                     <div className='w-full flex flex-col'>
                         <div className='flex flex-row justify-between mb-1 w-full'>
                             <span className='text-lg md:text-xl text-black/90 font-medium'>{item.title}</span>
-                            <span className='text-lg md:text-xl text-black/90 font-bold'>${item.price * item.quantity}</span>
+                            <span className='text-lg md:text-xl text-black/90 font-bold'>${(Math.round(item.price) * item.quantity).toLocaleString()}</span>
                         </div>
                         <span className='text-sm text-green-700 mb-1'>{item.availability}</span>
                         <span className='text-sm text-black/80 mb-3'>FREE Delivery - In 5 working days</span>
