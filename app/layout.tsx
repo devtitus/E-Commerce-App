@@ -26,7 +26,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
+  metadataBase: new URL('https://e-commerce-app-one-inky.vercel.app/'),
   title: {
     default: 'E-Commerce Site - Your Online Shopping Destination',
     template: '%s | E-Commerce Site'
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
+    url: 'https://e-commerce-app-one-inky.vercel.app/',
     siteName: 'E-Commerce Site',
     title: 'E-Commerce Site - Your Online Shopping Destination',
     description: 'Shop the best products online with our e-commerce platform.',

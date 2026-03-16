@@ -71,8 +71,10 @@ The easiest way to deploy is using Vercel:
 2. Go to [Vercel](https://vercel.com/new)
 3. Import your repository
 4. Add the environment variable:
-   - `NEXT_PUBLIC_APP_URL` = Your deployed URL (e.g., https://your-app.vercel.app)
+   - `NEXT_PUBLIC_APP_URL` = Your deployed URL (e.g., `https://your-app.vercel.app`)
 5. Deploy!
+
+**Important:** After deploying, update `app/layout.tsx` and replace `your-app.vercel.app` with your actual Vercel URL.
 
 ### Deploy to Other Platforms
 
