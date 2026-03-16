@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const BASE_URL=process.env.NEXT_PUBLIC_BASE_URL;
+
 export async function POST(req: NextRequest) {
     try {
         const token = req.cookies.get('token');
 
         try {
             if (token?.value) {
-                await fetch('https://dummyjson.com/auth/logout', {
+                await fetch(`${BASE_URL}/auth/logout`, {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token.value}`

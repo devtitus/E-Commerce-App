@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 
-const BASE_URL = "https://dummyjson.com/products";
+const BASE_URL=process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function GET() {
     try {
-        const res = await fetch(`${BASE_URL}/categories`);
+        const res = await fetch(`${BASE_URL}/products/categories`);
         const data = await res.json();
 
         return NextResponse.json(data);

@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const BASE_URL=process.env.NEXT_PUBLIC_BASE_URL;
+
 export async function GET(req: NextRequest) {
     try {
         const token = req.cookies.get('token');
@@ -11,7 +13,7 @@ export async function GET(req: NextRequest) {
             );
         }
 
-        const res = await fetch('https://dummyjson.com/auth/me', {
+        const res = await fetch(`${BASE_URL}/auth/me`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token.value}`

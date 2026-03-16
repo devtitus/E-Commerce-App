@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+const BASE_URL=process.env.NEXT_PUBLIC_BASE_URL;
+
 export async function POST(req: Request) {
     try {
         const body = await req.json();
@@ -9,7 +11,7 @@ export async function POST(req: Request) {
             password: body.password
         };
 
-        const res = await fetch('https://dummyjson.com/auth/login', {
+        const res = await fetch(`${BASE_URL}/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

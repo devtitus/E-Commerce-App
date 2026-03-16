@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const BASE_URL=process.env.NEXT_PUBLIC_BASE_URL;
+
 export async function POST(req: NextRequest) {
     try {
         const refreshTokenCookie = req.cookies.get('refreshToken');
@@ -11,7 +13,7 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        const res = await fetch('https://dummyjson.com/auth/refresh', {
+        const res = await fetch(`${BASE_URL}/auth/refresh`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

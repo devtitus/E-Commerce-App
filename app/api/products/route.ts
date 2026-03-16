@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const BASE_URL = "https://dummyjson.com/products";
+const BASE_URL=process.env.NEXT_PUBLIC_BASE_URL;
 const LIMIT = 10;
 
 export async function GET(req: Request) {
@@ -17,13 +17,13 @@ export async function GET(req: Request) {
         let url;
 
         if (query) {
-            url = `${BASE_URL}/search?q=${query}&limit=${LIMIT}&skip=${skip}`;
+            url = `${BASE_URL}/products/search?q=${query}&limit=${LIMIT}&skip=${skip}`;
         }
         else if (category) {
-            url = `${BASE_URL}/category/${category}?limit=${LIMIT}&skip=${skip}`;
+            url = `${BASE_URL}/products/category/${category}?limit=${LIMIT}&skip=${skip}`;
         }
         else {
-            url = `${BASE_URL}?limit=${LIMIT}&skip=${skip}`;
+            url = `${BASE_URL}/products/?limit=${LIMIT}&skip=${skip}`;
         }
 
         if (sortBy && order) {
