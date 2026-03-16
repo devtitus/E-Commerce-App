@@ -28,7 +28,7 @@ const SortSelector = () => {
     });
   };
   return (
-    <NativeSelect className="h-auto py-2.5 cursor-pointer" defaultValue="" onChange={(e) => handleChange(e.target.value)}>
+    <NativeSelect className="h-auto py-2.5 cursor-pointer text-sm md:text-sm" defaultValue="" onChange={(e) => handleChange(e.target.value)}>
       <NativeSelectOption value="">Sorting</NativeSelectOption>
       <NativeSelectOption value="title-asc">Title A-Z</NativeSelectOption>
       <NativeSelectOption value="title-desc">Title Z-A</NativeSelectOption>

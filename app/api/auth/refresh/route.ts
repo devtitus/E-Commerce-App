@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
     try {
-        const token = req.cookies.get('token');
+        const refreshTokenCookie = req.cookies.get('refreshToken');
 
-        if (!token || !token.value) {
+        if (!refreshTokenCookie?.value) {
             return NextResponse.json(
-                { message: 'Unauthorized - No token provided' },
+                { message: 'Unauthorized - No refresh token provided' },
                 { status: 401 }
             );
         }
@@ -17,7 +17,8 @@ export async function POST(req: NextRequest) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                refreshToken: token.value
+                refreshToken: refreshTokenCookie.value,
+                expiresInMins: 60
             }),
             credentials: 'include'
         });
@@ -48,6 +49,15 @@ export async function POST(req: NextRequest) {
             sameSite: 'lax',
             path: '/'
         });
+
+        if (data.refreshToken) {
+            response.cookies.set('refreshToken', data.refreshToken, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'lax',
+                path: '/'
+            });
+        }
 
         return response;
 

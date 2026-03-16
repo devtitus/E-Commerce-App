@@ -37,9 +37,15 @@ const AvatarDropdown = () => {
 
     const handleLogout = async () => {
         try {
-            await authPost('/auth/logout');
-            router.push('/login');
-            router.refresh();
+            const res = await fetch('/api/auth/logout', {
+                method: 'POST',
+                credentials: 'include'
+            });
+        
+            if (res.ok) {
+                router.push('/login');
+                router.refresh();
+            }
         } catch (error) {
             console.error('Logout failed:', error);
         }

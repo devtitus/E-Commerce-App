@@ -30,6 +30,7 @@ export async function POST(req: Request) {
         const response = NextResponse.json(data);
 
         const token = data.accessToken || data.token;
+
         if (token) {
             response.cookies.set('token', token, {
                 httpOnly: true,

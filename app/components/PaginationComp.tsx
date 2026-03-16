@@ -8,6 +8,7 @@ const PaginationComp = ({ totalPages, currentPage }: { totalPages: number, curre
   const params = useSearchParams();
   const router = useRouter();
   const { startTransition } = useNavigation();
+  const MAX_VISIBLE_AFTER_CURRENT = 1;
 
   const handlePageChange = (page: number) => {
     const search = new URLSearchParams(params);
@@ -19,20 +20,24 @@ const PaginationComp = ({ totalPages, currentPage }: { totalPages: number, curre
 
   const pages = [];
 
-  const start = Math.max(2, currentPage - 2);
-  const end = Math.min(totalPages - 1, currentPage + 2);
-
   pages.push(1);
 
-  if (start > 2) pages.push("ellipsis-start");
+  if (totalPages === 1) {
+  } else if (totalPages === 2) {
+    pages.push(2);
+  } else {
+    let start = Math.max(2, currentPage);
+    let end = Math.min(totalPages - 1, currentPage + MAX_VISIBLE_AFTER_CURRENT);
 
-  for (let i = start; i <= end; i++) {
-    pages.push(i);
+
+    if (start > 2) pages.push("ellipsis-start");
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+
+    if (end < totalPages - 1) pages.push("ellipsis-end");
+    pages.push(totalPages);
   }
-
-  if (end < totalPages - 1) pages.push("ellipsis-end");
-
-  if (totalPages > 1) pages.push(totalPages);
 
   return (
     <Pagination className='h-auto py-2.5 border-t border-black/20 flex items-end justify-end px-4 md:px-8 lg:px-15'>

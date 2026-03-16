@@ -1,16 +1,41 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST() {
+export async function POST(req: NextRequest) {
     try {
-        const response = NextResponse.json({ message: 'Logged out successfully'});
+        const token = req.cookies.get('token');
 
+        try {
+            if (token?.value) {
+                await fetch('https://dummyjson.com/auth/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token.value}`
+                    },
+                    credentials: 'include'
+                });
+            }
+        } catch {}
+
+        const response = NextResponse.json({ message: 'Logged out successfully' });
+
+        // Clear token cookie
         response.cookies.set('token', '', {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
             path: '/',
-            maxAge: 0
+            expires: new Date(0)
         });
+
+        // Clear refreshToken cookie
+        response.cookies.set('refreshToken', '', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            path: '/',
+            expires: new Date(0)
+        });
+
         return response;
     } catch (error) {
         console.error('Logout error:', error);

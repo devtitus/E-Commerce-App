@@ -23,8 +23,8 @@ export default function Loading() {
         <Skeleton className="w-24 h-6" />
       </div>
 
-      <div className='flex-1 overflow-y-auto px-4 md:px-8 lg:px-15 pb-8'>
-        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
+      <div className='md:flex-1 overflow-y-auto px-4 py-6 md:px-8 lg:px-15 2xl:py-8'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5'>
           {Array.from({ length: 20 }).map((_, index) => (
             <div key={index} className='border border-black/10 bg-white w-full p-4 rounded-2xl overflow-hidden'>
               <Skeleton className="w-full h-48 rounded-xl mb-3" />

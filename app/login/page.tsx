@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button, Input, Spinner } from '@/components/ui/index';
 
@@ -8,6 +8,14 @@ const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
     const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        fetch('/api/auth/logout', {
+            method: 'POST',
+            credentials: 'include'
+        }).catch(() => {
+        });
+    }, []);
 
     const validate = () => {
         const newErrors: { email?: string; password?: string } = {};

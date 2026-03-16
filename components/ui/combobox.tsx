@@ -62,7 +62,7 @@ function ComboboxInput({
 }) {
   return (
     <InputGroup className={cn("w-auto h-auto py-0.5", className)}>
-      <ComboboxPrimitive.Input
+      <ComboboxPrimitive.Input className={'text-sm md:text-sm'}
         render={<InputGroupInput disabled={disabled} />}
         {...props}
       />
