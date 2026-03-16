@@ -36,14 +36,14 @@ const ProductById = ({ params }: { params: Promise<{ id: string }> }) => {
                 setError(null);
                 const { id } = await params;
                 const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/products/${id}`);
-                
+
                 if (!res.ok) {
                     setProduct(null);
                     setError('Product not found');
                     setLoading(false);
                     return;
                 }
-                
+
                 const data = await res.json();
                 setProduct(data);
             } catch (err) {
@@ -108,7 +108,7 @@ const ProductById = ({ params }: { params: Promise<{ id: string }> }) => {
     }
 
     return (
-        <div className='w-full h-[calc(100vh-64px)] flex flex-col overflow-hidden'>
+        <div className='w-full h-[calc(100vh-64px)] flex flex-col overflow-y-auto md:overflow-hidden'>
             <div className='flex-shrink-0 px-4 md:px-8 lg:px-15 py-6 md:py-8 pb-4'>
 
                 <div className='w-full mb-4 md:mb-6'>
@@ -121,10 +121,10 @@ const ProductById = ({ params }: { params: Promise<{ id: string }> }) => {
                 </div>
 
                 <div className='flex flex-col lg:flex-row gap-6 lg:gap-10'>
-                    <Image src={product.thumbnail} width={500} height={500} alt={product.title} className='w-full lg:w-125 h-48 md:h-80 lg:h-125 object-contain rounded-xl border border-black/10 bg-[#F6F6F6]' sizes="(max-width: 768px) 100vw, 320px" quality={85} />
+                    <Image src={product.thumbnail} width={500} height={500} alt={product.title} className='w-full h-48 md:h-80 lg:w-100 lg:h-100 2xl:w-125 2xl:h-125 object-contain rounded-xl border border-black/10 bg-[#F6F6F6]' sizes="(max-width: 768px) 100vw, 320px" quality={85} />
                     <div className='flex-1'>
-                        <div className='flex flex-col md:flex-row w-full justify-between items-start mb-3 gap-2'>
-                            <div className='w-full md:w-[80%]'>
+                        <div className='flex flex-col lg:flex-col xl:flex-row md:flex-row w-full justify-between items-start mb-3 gap-2'>
+                            <div className='w-full md:w-[80%] lg:w-full xl:w-[80%]'>
                                 <h1 className='text-xl md:text-2xl font-semibold mb-2 text-black'>{product.title}</h1>
                                 <p className='text-sm md:text-base font-normal text-black/80 leading-relaxed'>{product.description}</p>
                             </div>
@@ -145,7 +145,7 @@ const ProductById = ({ params }: { params: Promise<{ id: string }> }) => {
                             <div className='text-black/40'>|</div>
                             <p className='text-lg font-light text-green-700'>{Math.round(product.discountPercentage)}% Off</p>
                         </div>
-                        <div className='flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-6 md:mb-12'>
+                        <div className='flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-6 md:mb-'>
                             <Button variant={'outline'} className='w-full sm:w-auto py-2.5 h-auto px-6 cursor-pointer'>Buy Now</Button>
                             <Button variant={'default'} className='w-full sm:w-auto py-2.5 h-auto px-6 cursor-pointer' onClick={handleAddToCart}>Add to Cart</Button>
                         </div>
