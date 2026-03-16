@@ -74,7 +74,10 @@ const Login = () => {
                         </div>
                         <div className='hidden md:block'>
                             <h2 className='text-white text-2xl md:text-3xl leading-normal font-semibold'>Elevate Your Everyday with Premium Essentials.</h2>
-                            <p className='text-white/50 mt-4 leading-normal text-sm'>The quality of the products is unmatched, the checkout is seamless, and delivery is incredibly fast. It's my go-to store!</p>
+                            <p className='text-white/50 mt-4 leading-normal text-sm flex flex-col'>For Demo use 
+                            <span>Username : emilys</span>
+                            <span>Passoword : emilyspass</span>
+                            </p>
                         </div>
                         <div className='hidden md:flex flex-col gap-2'>
                             <span className='text-md text-white'>AS FEATURED IN</span>
