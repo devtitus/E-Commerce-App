@@ -29,7 +29,7 @@ export function ProductGrid({ products, total, currentPage }: ProductGridProps) 
 
   return (
     <>
-      <div className='md:flex-1 overflow-y-auto px-4 py-6 md:px-8 lg:px-15 2xl:py-8'>
+      <div className='flex-1 overflow-y-auto px-4 py-6 md:px-8 lg:px-15 2xl:py-8'>
         {isPending ? (
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5'>
             {Array.from({ length: 10 }).map((_, index) => (
@@ -54,7 +54,9 @@ export function ProductGrid({ products, total, currentPage }: ProductGridProps) 
           </div>
         )}
       </div>
-      <Pagination totalPages={totalPages} currentPage={currentPage} />
+      <div className='flex-shrink-0'>
+        <Pagination totalPages={totalPages} currentPage={currentPage} />
+      </div>
     </>
   );
 }

@@ -56,9 +56,9 @@ const Products = async ({ searchParams }: { searchParams: Promise<SearchParams> 
 
   return (
     <NavigationProvider>
-      <div className='w-full h-[calc(100vh-64px)] flex flex-col overflow-hidden'>
-        <div className='flex-shrink-0 px-4 md:px-8 lg:px-15 py-6 lg:pt-8 pb-4 lg:pb-3 border-b border-black/10'>
-          <div className="grid grid-cols-1 md:flex md:flex-wrap md:justify-center lg:grid lg:grid-cols-3 items-center gap-4 lg:gap-4 mb-5 md:mb-3">
+      <div className='w-full h-[calc(100svh-64px)] md:h-[calc(100vh-64px)] flex flex-col overflow-hidden'>
+        <div className='flex-shrink-0 px-4 md:px-8 lg:px-15 py-2 lg:pt-8 pb-4 lg:pb-3 border-b border-black/10'>
+          <div className="grid grid-cols-1 md:flex md:flex-wrap md:justify-center lg:grid lg:grid-cols-3 items-center gap-4 lg:gap-4 mb-2 md:mb-3">
             {/* Empty left - hidden on mobile */}
             <div className='hidden md:block'></div>
 
