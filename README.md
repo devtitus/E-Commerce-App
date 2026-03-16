@@ -44,6 +44,7 @@ Create a `.env.local` file in the root directory with the following variables:
 ```env
 # Required - Your application URL (used for API calls)
 NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_BASE_URL=https://dummyjson.com
 ```
 
 ### 4. Run the development server
