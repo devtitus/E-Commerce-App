@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# E-Commerce Site
 
-## Getting Started
+A Next.js e-commerce application with shopping cart, product filtering, pagination, and user authentication.
 
-First, run the development server:
+## Features
+
+- Product listing with filtering and sorting
+- Shopping cart with quantity management
+- User authentication (login/logout)
+- Pagination for products
+- Responsive design
+- Category filtering
+
+## Prerequisites
+
+- Node.js 18+
+- npm, yarn, pnpm, or bun
+
+## Setup Instructions
+
+### 1. Clone the repository
+
+```bash
+git clone <repository-url>
+cd catalyst-assignment
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+### 3. Environment Variables
+
+Create a `.env.local` file in the root directory with the following variables:
+
+```env
+# Required - Your application URL (used for API calls)
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+### 4. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables Reference
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `NEXT_PUBLIC_APP_URL` | Base URL for the application (used for API calls) | Yes |
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+### Deploy to Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The easiest way to deploy is using Vercel:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push your code to GitHub
+2. Go to [Vercel](https://vercel.com/new)
+3. Import your repository
+4. Add the environment variable:
+   - `NEXT_PUBLIC_APP_URL` = Your deployed URL (e.g., https://your-app.vercel.app)
+5. Deploy!
 
-## Deploy on Vercel
+### Deploy to Other Platforms
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Docker
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```dockerfile
+# Build the image
+docker build -t ecommerce-app .
+
+# Run the container
+docker run -p 3000:3000 -e NEXT_PUBLIC_APP_URL=http://localhost:3000 ecommerce-app
+```
+
+#### Node.js Server
+
+```bash
+# Build the application
+npm run build
+
+# Start the production server
+npm start
+```
+
+## Tech Stack
+
+- **Framework**: Next.js 14+ (App Router)
+- **UI**: React, Tailwind CSS
+- **State Management**: Redux Toolkit
+- **Authentication**: DummyJSON API
+- **Icons**: Lucide React
+
+## Project Structure
+
+```
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   ├── cart/              # Cart page
+│   ├── components/        # React components
+│   ├── login/             # Login page
+│   └── products/          # Products page
+├── components/            # UI components
+├── lib/                   # Utility functions
+└── store/                 # Redux store
+```
+
+## License
+
+MIT
