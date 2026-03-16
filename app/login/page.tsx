@@ -52,38 +52,40 @@ const Login = () => {
 
     return (
         <div className='flex items-center justify-center w-full h-screen overflow-hidden'>
-            <div className='flex flex-row w-full h-full bg-white border border-black'>
-                <div className='w-[50%] h-screen py-20 px-28 bg-[#0F0F0F] border border-black flex flex-col items-center'>
-                    {/* Content Wrapper */}
+            <div className='flex flex-col md:flex-row w-full h-full'>
+                {/* Left Side - Branding */}
+                <div className='w-full md:w-[50%] h-1/3 md:h-screen py-8 md:py-20 px-6 md:px-28 bg-[#0F0F0F] flex flex-col items-center justify-between'>
                     <div className='flex flex-col w-full justify-between max-w-md h-full'>
                         {/* Logo Container */}
                         <div className='flex items-start gap-3'>
-                            <div className='w-12 h-12 rounded-md bg-white flex justify-center items-center text-2xl'>#</div>
+                            <div className='w-10 md:w-12 h-10 md:h-12 rounded-md bg-white flex justify-center items-center text-xl'>#</div>
                             <div className='flex flex-col gap-1'>
-                                <span className='text-white/80 font-bold uppercase'>E-Commerce Site</span>
-                                <p className='text-white/50 text-sm'>Your Partner</p>
+                                <span className='text-white/80 font-bold uppercase text-sm md:text-base'>E-Commerce Site</span>
+                                <p className='text-white/50 text-xs'>Your Partner</p>
                             </div>
                         </div>
-                        <div>
-                            <h2 className='text-white text-3xl leading-normal font-semibold'>Elevate Your Everyday with Premium Essentials.</h2>
-                            <p className='text-white/50 mt-4 leading-normal'>The quality of the products is unmatched, the checkout is seamless, and delivery is incredibly fast. It's my go-to store!</p>
+                        <div className='hidden md:block'>
+                            <h2 className='text-white text-2xl md:text-3xl leading-normal font-semibold'>Elevate Your Everyday with Premium Essentials.</h2>
+                            <p className='text-white/50 mt-4 leading-normal text-sm'>The quality of the products is unmatched, the checkout is seamless, and delivery is incredibly fast. It's my go-to store!</p>
                         </div>
                         {/* Empty Container */}
-                        <div className='flex flex-col gap-2'>
+                        <div className='hidden md:flex flex-col gap-2'>
                             <span className='text-md text-white'>AS FEATURED IN</span>
                             <p className='text-white/60 text-xs'>TRUSTED BY 50,000+ SHOPPERS</p>
                         </div>
                     </div>
                 </div>
-                <div className='w-[50%] h-screen py-20 px-28 text-black flex flex-col items-center justify-center'>
+
+                {/* Right Side - Login Form */}
+                <div className='w-full md:w-[50%] h-2/3 md:h-screen py-8 md:py-20 px-6 md:px-28 text-black flex flex-col items-center justify-center'>
                     {/* Login Form Wrapper */}
                     <form className='flex flex-col w-full max-w-md' onSubmit={hangleSubmit}>
                         <h1 className='text-2xl font-semibold'>Welcome Back!</h1>
                         <p className='text-base font-regular mt-2 mb-6'>Sign in to access your dashboard.</p>
                         {/* Email Wrapper */}
                         <div className='flex flex-col gap-2 mb-5'>
-                            <label htmlFor="email_id" className='text-sm font-medium text-black/70'>Email</label>
-                            <Input id='email_id' type='email' value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="Enter text" className='px-4 py-3' />
+                            <label htmlFor="username" className='text-sm font-medium text-black/70'>Email</label>
+                            <Input id='username' type='text' value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="Enter text" className='px-4 py-3' />
                             {errors.email && (
                                 <p className="text-destructive text-sm">{errors.email}</p>
                             )}

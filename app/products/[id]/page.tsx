@@ -109,9 +109,9 @@ const ProductById = ({ params }: { params: Promise<{ id: string }> }) => {
 
     return (
         <div className='w-full h-[calc(100vh-64px)] flex flex-col overflow-hidden'>
-            <div className='flex-shrink-0 px-15 py-8 pb-4'>
+            <div className='flex-shrink-0 px-4 md:px-8 lg:px-15 py-6 md:py-8 pb-4'>
 
-                <div className='w-full mb-6'>
+                <div className='w-full mb-4 md:mb-6'>
                     <Link href='/products'>
                         <Button variant={'outline'} className={`flex flex-row items-center gap-2 cursor-pointer`}>
                             <ArrowLeft />
@@ -120,50 +120,50 @@ const ProductById = ({ params }: { params: Promise<{ id: string }> }) => {
                     </Link>
                 </div>
 
-                <div className='flex flex-row gap-10'>
-                    <Image src={product.thumbnail} width={500} height={500} alt={product.title} className='w-125 h-125 object-contain rounded-xl border border-black/10 bg-[#F6F6F6]' sizes="(max-width: 768px) 100vw, 320px" quality={85} />
-                    <div>
-                        <div className='flex flex-row w-full justify-between items-start mb-3'>
-                            <div className='w-[80%]'>
-                                <h1 className='text-2xl font-semibold mb-2 text-black'>{product.title}</h1>
-                                <p className='text-base font-normal text-black/80 leading-relaxed'>{product.description}</p>
+                <div className='flex flex-col lg:flex-row gap-6 lg:gap-10'>
+                    <Image src={product.thumbnail} width={500} height={500} alt={product.title} className='w-full lg:w-125 h-48 md:h-80 lg:h-125 object-contain rounded-xl border border-black/10 bg-[#F6F6F6]' sizes="(max-width: 768px) 100vw, 320px" quality={85} />
+                    <div className='flex-1'>
+                        <div className='flex flex-col md:flex-row w-full justify-between items-start mb-3 gap-2'>
+                            <div className='w-full md:w-[80%]'>
+                                <h1 className='text-xl md:text-2xl font-semibold mb-2 text-black'>{product.title}</h1>
+                                <p className='text-sm md:text-base font-normal text-black/80 leading-relaxed'>{product.description}</p>
                             </div>
                             <span className='flex-nowrap text-lg text-orange-600 font-bold'>{product.rating} Stars</span>
                         </div>
-                        <div className='flex flex-row items-center gap-3 mb-2'>
-                            <p className='text-green-700 text-base font-medium'>{product.availabilityStatus}</p>
-                            <div>-</div>
+                        <div className='flex flex-wrap items-center gap-2 md:gap-3 mb-2'>
+                            <p className='text-green-700 text-sm md:text-base font-medium'>{product.availabilityStatus}</p>
+                            <div className='hidden sm:block'>-</div>
                             <p className='bg-[#F6F6F6] border border-black/20 text-black/80 font-medium rounded-full w-fit px-3 py-0.5 text-sm capitalize'>{product.category}</p>
                         </div>
                         <p className='text-base font-medium text-black'>Stock:{" "}<span className='text-black/80 font-normal'>{product.stock}</span></p>
-                        <hr className='border border-black/10 my-5' />
-                        <div className='flex flex-row items-center gap-2 mb-5'>
-                            <p className='text-2xl font-medium flex flex-row items-start text-black gap-1'>
+                        <hr className='border border-black/10 my-4 md:my-5' />
+                        <div className='flex flex-row items-center gap-2 mb-4 md:mb-5'>
+                            <p className='text-xl md:text-2xl font-medium flex flex-row items-start text-black gap-1'>
                                 <span className='text-base font-normal text-black/80'>$</span>
                                 {product.price}
                             </p>
                             <div className='text-black/40'>|</div>
                             <p className='text-lg font-light text-green-700'>{Math.round(product.discountPercentage)}% Off</p>
                         </div>
-                        <div className='flex flex-row items-center gap-3 mb-12'>
-                            <Button variant={'outline'} className='py-2.5 h-auto px-6 cursor-pointer'>Buy Now</Button>
-                            <Button variant={'default'} className='py-2.5 h-auto px-6 cursor-pointer' onClick={handleAddToCart}>Add to Cart</Button>
+                        <div className='flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-6 md:mb-12'>
+                            <Button variant={'outline'} className='w-full sm:w-auto py-2.5 h-auto px-6 cursor-pointer'>Buy Now</Button>
+                            <Button variant={'default'} className='w-full sm:w-auto py-2.5 h-auto px-6 cursor-pointer' onClick={handleAddToCart}>Add to Cart</Button>
                         </div>
-                        <div className='flex flex-row items-center gap-5'>
+                        <div className='flex flex-col md:flex-row items-start gap-4 md:gap-5'>
                             {/* Warranty */}
-                            <div className='w-1/3 border border-black/20 px-5 py-4 rounded-lg flex flex-col shadow-sm bg-white'>
+                            <div className='w-full md:w-1/3 border border-black/20 px-4 md:px-5 py-3 md:py-4 rounded-lg flex flex-col shadow-sm bg-white'>
                                 <span className='text-md font-medium mb-1'>Warranty Information</span>
-                                <p className='text-base font-normal text-black/80'>{product.warrantyInformation}</p>
+                                <p className='text-sm md:text-base font-normal text-black/80'>{product.warrantyInformation}</p>
                             </div>
                             {/* Shipping Information */}
-                            <div className='w-1/3 border border-black/20 px-5 py-4 rounded-lg flex flex-col shadow-sm bg-white'>
+                            <div className='w-full md:w-1/3 border border-black/20 px-4 md:px-5 py-3 md:py-4 rounded-lg flex flex-col shadow-sm bg-white'>
                                 <span className='text-md font-medium mb-1'>Shipping Information</span>
-                                <p className='text-base font-normal text-black/80'>{product.shippingInformation}</p>
+                                <p className='text-sm md:text-base font-normal text-black/80'>{product.shippingInformation}</p>
                             </div>
                             {/* Return Policy */}
-                            <div className='w-1/3 border border-black/20 px-5 py-4 rounded-lg flex flex-col shadow-sm bg-white'>
+                            <div className='w-full md:w-1/3 border border-black/20 px-4 md:px-5 py-3 md:py-4 rounded-lg flex flex-col shadow-sm bg-white'>
                                 <span className='text-md font-medium mb-1'>Return Policy</span>
-                                <p className='text-base font-normal text-black/80'>{product.returnPolicy}</p>
+                                <p className='text-sm md:text-base font-normal text-black/80'>{product.returnPolicy}</p>
                             </div>
                         </div>
                     </div>

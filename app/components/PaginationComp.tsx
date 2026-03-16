@@ -35,7 +35,7 @@ const PaginationComp = ({ totalPages, currentPage }: { totalPages: number, curre
   if (totalPages > 1) pages.push(totalPages);
 
   return (
-    <Pagination className='h-auto py-2.5 border-t border-black/20 flex items-end justify-end px-15'>
+    <Pagination className='h-auto py-2.5 border-t border-black/20 flex items-end justify-end px-4 md:px-8 lg:px-15'>
       <PaginationContent>
 
         {currentPage > 1 && (

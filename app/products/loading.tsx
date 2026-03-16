@@ -3,18 +3,18 @@ import { Skeleton } from "@/components/ui";
 export default function Loading() {
   return (
     <div className='w-full h-[calc(100vh-64px)] flex flex-col overflow-hidden'>
-      <div className='flex-shrink-0 px-15 py-8 pb-4'>
-        <div className="grid grid-cols-3 items-center mb-5">
-          {/* Empty left */}
-          <div></div>
+      <div className='flex-shrink-0 px-4 md:px-8 lg:px-15 py-6 md:py-8 pb-4'>
+        <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-4 md:gap-0 mb-5">
+          {/* Empty left - hidden on mobile */}
+          <div className='hidden md:block'></div>
 
           {/* Center - SearchBar skeleton */}
-          <div className="flex justify-center">
+          <div className="flex justify-center order-first md:order-none">
             <Skeleton className="w-full max-w-md h-10" />
           </div>
 
           {/* Right - Filters skeleton */}
-          <div className="flex justify-end gap-4">
+          <div className="flex justify-end gap-2 md:gap-4 flex-wrap">
             <Skeleton className="w-40 h-10" />
             <Skeleton className="w-32 h-10" />
           </div>
@@ -23,7 +23,7 @@ export default function Loading() {
         <Skeleton className="w-24 h-6" />
       </div>
 
-      <div className='flex-1 overflow-y-auto px-15 pb-8'>
+      <div className='flex-1 overflow-y-auto px-4 md:px-8 lg:px-15 pb-8'>
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
           {Array.from({ length: 20 }).map((_, index) => (
             <div key={index} className='border border-black/10 bg-white w-full p-4 rounded-2xl overflow-hidden'>
@@ -42,7 +42,7 @@ export default function Loading() {
       </div>
       
       {/* Pagination skeleton */}
-      <div className='h-auto py-2.5 border-t border-black/20 flex items-end justify-end px-15'>
+      <div className='h-auto py-2.5 border-t border-black/20 flex items-end justify-end px-4 md:px-8 lg:px-15'>
         <div className="flex gap-2">
           <Skeleton className="w-20 h-8" />
           <Skeleton className="w-8 h-8" />
