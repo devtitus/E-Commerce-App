@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        const res = await fetch('https://dummyjson.com/user/refresh', {
+        const res = await fetch('https://dummyjson.com/auth/refresh', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

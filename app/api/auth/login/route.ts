@@ -9,7 +9,7 @@ export async function POST(req: Request) {
             password: body.password
         };
 
-        const res = await fetch('https://dummyjson.com/user/login', {
+        const res = await fetch('https://dummyjson.com/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

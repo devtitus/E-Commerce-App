@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
             );
         }
 
-        const res = await fetch('https://dummyjson.com/user/me', {
+        const res = await fetch('https://dummyjson.com/auth/me', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token.value}`
